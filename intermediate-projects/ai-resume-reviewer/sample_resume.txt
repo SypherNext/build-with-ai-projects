@@ -1,0 +1,24 @@
+Alex Johnson
+alex.johnson@email.com | (555) 123-4567
+
+SUMMARY
+Software engineer with 3 years of experience building web applications.
+Proficient in Python, JavaScript, and React.
+
+WORK EXPERIENCE
+
+Software Engineer | TechCorp | Jan 2023 - Present
+- Developed web applications using Python and Django
+- Built REST APIs for mobile applications
+- Fixed bugs and improved test coverage
+
+Junior Developer | StartupCo | Jun 2021 - Dec 2022
+- Assisted in frontend development using React
+- Wrote unit tests
+- Participated in code reviews
+
+EDUCATION
+B.S. Computer Science | State University | 2021
+
+SKILLS
+Python, JavaScript, React, Django, PostgreSQL, Git, Docker (basic)

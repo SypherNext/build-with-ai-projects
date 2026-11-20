@@ -1,0 +1,18 @@
+Senior Software Engineer - Backend
+
+We are looking for a Senior Software Engineer to join our backend team.
+You will design and build scalable distributed systems that power our platform.
+
+Requirements:
+- 5+ years of software engineering experience
+- Strong proficiency in Python and Django
+- Experience with cloud services (AWS or GCP)
+- Experience designing and building RESTful APIs
+- Knowledge of relational databases (PostgreSQL preferred)
+- Experience with containerization (Docker, Kubernetes)
+- Strong problem-solving and communication skills
+
+Nice to have:
+- Experience with microservices architecture
+- Knowledge of message queues (RabbitMQ, Kafka)
+- Experience leading technical projects

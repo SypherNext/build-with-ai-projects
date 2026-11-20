@@ -1,0 +1,80 @@
+# config.yaml
+server:
+  name: enterprise-mcp
+  version: "1.0.0"
+  transport: sse
+  host: "0.0.0.0"
+  port: 8000
+
+auth:
+  enabled: true
+  # The lesson's own config.yaml (Build Step 1) omits the `token` field
+  # entirely, but app/auth.py's init_tokens() indexes t["token"] on every
+  # entry -- without it the server crashes at startup (KeyError: 'token').
+  # Added here with placeholder values; replace with real generated tokens
+  # (see the Build lesson's "Error 2: Token Authentication Fails" fix) before
+  # using this outside local testing.
+  tokens:
+    - user: admin
+      token: "REPLACE_WITH_GENERATED_ADMIN_TOKEN"
+      scopes: ["db:read", "db:write", "api:*", "notify"]
+    - user: analyst
+      token: "REPLACE_WITH_GENERATED_ANALYST_TOKEN"
+      scopes: ["db:read", "api:read"]
+
+tools:
+  - name: query_database
+    description: Execute SQL queries against the enterprise database
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: SQL query to execute
+        params:
+          type: array
+          items: {}
+      required: [query]
+    required_scopes: ["db:read"]
+    rate_limit: 30
+    backend: postgres
+
+  - name: search_documentation
+    description: Search internal documentation
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+        max_results:
+          type: integer
+          default: 5
+      required: [query]
+    required_scopes: ["api:read"]
+    rate_limit: 60
+    backend: http
+
+  - name: send_notification
+    description: Send a notification to a Slack channel
+    input_schema:
+      type: object
+      properties:
+        channel:
+          type: string
+        message:
+          type: string
+        priority:
+          type: string
+          enum: ["info", "warning", "critical"]
+      required: [channel, message]
+    required_scopes: ["notify"]
+    rate_limit: 10
+    backend: notify
+
+resources:
+  - uri: "db://tables/{table_name}"
+    name: Database Table
+    mime_type: application/json
+  - uri: "docs://{document_id}"
+    name: Internal Document
+    mime_type: text/markdown
